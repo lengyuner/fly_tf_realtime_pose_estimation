@@ -2,9 +2,13 @@
 
 This repo is a clone of `Tensorflow 2.0 Realtime Multi-Person Pose Estimation`.
 
-And it has been changed for the fruit fly and the Windows.
+And it has been changed for the fruit fly and **the Windows**.
 
 It can reach the speed of **20FPS** in GPU(predict the picture one-by-one).
+
+You can run 'happy_train.py' to train on your data and run 'happy_test.py' to test.
+
+Good luck!
 
 # The following is the original repo.
 
