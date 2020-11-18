@@ -1,3 +1,15 @@
+# fly_tf_realtime_pose_estimation
+
+This repo is a clone of `Tensorflow 2.0 Realtime Multi-Person Pose Estimation`.
+
+And it has been changed for the fruit fly and the Windows.
+
+It can reach the speed of **20FPS** in GPU(predict the picture one-by-one).
+
+# The following is the original repo.
+
+#
+
 # Tensorflow 2.0 Realtime Multi-Person Pose Estimation
 
 ## What's New
