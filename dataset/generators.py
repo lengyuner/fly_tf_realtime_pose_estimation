@@ -4,6 +4,7 @@ from dataset.dataflows import get_dataflow, get_dataflow_vgg
 
 
 def get_dataset_with_masks(annot_path, img_dir, batch_size, strict=False, x_size=368, y_size=46):
+# def get_dataset_with_masks(annot_path, img_dir, batch_size, strict=False, x_size=48, y_size=64):
     def gen(df):
         def f():
             for i in df:
@@ -25,10 +26,10 @@ def get_dataset_with_masks(annot_path, img_dir, batch_size, strict=False, x_size
         gen(df), (tf.float32, tf.float32, tf.float32, tf.float32, tf.float32),
         output_shapes=(
             tf.TensorShape([x_size, x_size, 3]),
-            tf.TensorShape([y_size, y_size, 38]),
-            tf.TensorShape([y_size, y_size, 19]),
-            tf.TensorShape([y_size, y_size, 38]),
-            tf.TensorShape([y_size, y_size, 19]),
+            tf.TensorShape([y_size, y_size, 12]),#TODO
+            tf.TensorShape([y_size, y_size, 6]),
+            tf.TensorShape([y_size, y_size, 12]),
+            tf.TensorShape([y_size, y_size, 6]),#TODO
             )
     )
 
@@ -39,6 +40,7 @@ def get_dataset_with_masks(annot_path, img_dir, batch_size, strict=False, x_size
 
 
 def get_dataset(annot_path, img_dir, batch_size, strict=False, x_size=224, y_size=28):
+# def get_dataset(annot_path, img_dir, batch_size, strict=False, x_size=48, y_size=64):
     def gen(df):
         def f():
             for i in df:
@@ -58,8 +60,8 @@ def get_dataset(annot_path, img_dir, batch_size, strict=False, x_size=224, y_siz
         gen(df), (tf.float32, tf.float32, tf.float32),
         output_shapes=(
             tf.TensorShape([x_size, x_size, 3]),
-            tf.TensorShape([y_size, y_size, 38]),
-            tf.TensorShape([y_size, y_size, 19])
+            tf.TensorShape([y_size, y_size, 12]),
+            tf.TensorShape([y_size, y_size, 6])      #TODO(jz)
             )
     )
 

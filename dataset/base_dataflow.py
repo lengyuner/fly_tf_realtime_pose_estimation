@@ -20,22 +20,39 @@ class JointsLoader:
         else:
             return None
 
-    num_joints = 18
+    num_joints = 5  #18
+    # TODO(JZ)18
 
     num_joints_and_bkg = num_joints + 1
 
-    num_connections = 19
+    num_connections =6  #  19
+    # TODO(JZ)19
 
-    idx_in_coco = [0, lambda x: JointsLoader._get_neck(x, 5, 6), 6, 8,
-                   10, 5, 7, 9, 12, 14, 16, 11, 13, 15, 2, 1, 4, 3]
-
+    # idx_in_coco = [0, lambda x: JointsLoader._get_neck(x, 5, 6), 6, 8,
+    #                10, 5, 7, 9, 12, 14, 16, 11, 13, 15, 2, 1, 4, 3]
+    # idx_in_coco = [0, 1, 2, 3, lambda x: JointsLoader._get_neck(x, 3, 5), 5 ]
+    idx_in_coco = [0, 1, 2, 3, 4]
+    # idx_in_coco_str0 = [
+    #     'Nose','Neck','RShoulder','RElbow','RWrist','LShoulder','LElbow','LWrist',
+    #     'RHip','RKnee','RAnkle','LHip','LKnee','LAnkle','REye','LEye','REar','LEar']
+    # idx_in_coco_str = [
+    #     'Head', 'Center', 'Tail',
+    #     'LWing','Nonsense','RWing'
+    #     ]
     idx_in_coco_str = [
-        'Nose','Neck','RShoulder','RElbow','RWrist','LShoulder','LElbow','LWrist',
-        'RHip','RKnee','RAnkle','LHip','LKnee','LAnkle','REye','LEye','REar','LEar']
+        'Head', 'Center', 'Tail',
+        'LWing', 'RWing'
+    ]
 
+    #         0
+    #     3   1   4
+    #     3   2   4
+    # joint_pairs = list(zip(
+    #     [1, 8, 9, 1, 11, 12, 1, 2, 3, 2, 1, 5, 6, 5, 1, 0, 0, 14, 15],
+    #     [8, 9, 10, 11, 12, 13, 2, 3, 4, 16, 5, 6, 7, 17, 0, 14, 15, 16, 17]))
     joint_pairs = list(zip(
-        [1, 8, 9, 1, 11, 12, 1, 2, 3, 2, 1, 5, 6, 5, 1, 0, 0, 14, 15],
-        [8, 9, 10, 11, 12, 13, 2, 3, 4, 16, 5, 6, 7, 17, 0, 14, 15, 16, 17]))
+        [0, 1, 1, 1, 2, 2],
+        [1, 2, 3, 4, 3, 4]))
 
     @staticmethod
     def from_coco_keypoints(all_keypoints, w ,h):
@@ -192,8 +209,11 @@ class CocoDataFlow(RNGDataFlow):
 
                 # skip this person if parts number is too low or if
                 # segmentation area is too small
-
+                # print('person_meta num_keypoints  =  ',person_meta["num_keypoints"])
+                # print('person_meta area  =  ', person_meta["area"])
+                person_meta["area"]=64*48 ##TODO(JZ)area
                 if person_meta["num_keypoints"] < 5 or person_meta["area"] < 32 * 32:
+                    #TODO(JZ)
                     masks.append(self.coco.annToRLE(person_meta))
                     continue
 

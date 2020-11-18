@@ -22,7 +22,8 @@ class AugImgMetadata:
         return AugImgMetadata(new_img, new_mask, self.center, self.scale)
 
 
-def joints_to_point8(joints, num_p=18):
+# def joints_to_point8(joints, num_p=18):
+def joints_to_point8(joints, num_p=5):#TODO(JZ)18
     """
     Converts joints structure to Nx2 nparray (format expected by tensorpack augmentors)
     Nx2 = floating point nparray where each row is (x, y)
@@ -44,8 +45,8 @@ def joints_to_point8(joints, num_p=18):
 
     return segment
 
-
-def point8_to_joints(points, num_p=18):
+def point8_to_joints(points, num_p=5):
+# def point8_to_joints(points, num_p=18):#TODO(JZ)18
     """
     Converts Nx2 nparray to the list of joints
 
@@ -115,9 +116,10 @@ class FlipTransform(Transform):
         :return:
         """
         if self.doit:
-            right = [2, 3, 4, 8, 9, 10, 14, 16]
-            left = [5, 6, 7, 11, 12, 13, 15, 17]
-
+            # right = [2, 3, 4, 8, 9, 10, 14, 16]
+            # left = [5, 6, 7, 11, 12, 13, 15, 17]
+            right = [3]
+            left = [4] #TODO(JZ)left_right
             for l_idx, r_idx in zip(left, right):
                 idxs = range(0, coords.shape[0], self.num_parts)
                 for idx in idxs:

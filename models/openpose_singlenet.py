@@ -33,21 +33,21 @@ class OpenPoseSingleNet(tf.keras.Model):
             ['select:backbone#'],
             ['cn2_r5_e1_c192_npre'],
             ['ir_r1_k1_s1_e1_c256_se4_npre'],
-            ['hd_r1_k1_s1_c38']
+            ['hd_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_1#': [
             ['select:stage_0#:backbone#'],
             ['cnct:'],
             ['cn2_r5_e1_c384_npre'],
             ['ir_r1_k1_s1_e1_c256_se4_npre'],
-            ['hd_r1_k1_s1_c38']
+            ['hd_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_2#': [
             ['select:stage_1#:backbone#'],
             ['cnct:'],
             ['cn2_r5_e1_c384_npre'],
             ['ir_r1_k1_s1_e1_c512_se4_npre'],
-            ['hd_r1_k1_s1_c38']
+            ['hd_r1_k1_s1_c12']# TODO (JZ)
         ],
 
         # Heatmap stages
@@ -57,7 +57,7 @@ class OpenPoseSingleNet(tf.keras.Model):
             ['cnct:'],
             ['cn2_r5_e1_c384_npre'],
             ['ir_r1_k1_s1_e1_c512_se4_npre'],
-            ['hd_r1_k1_s1_c19']
+            ['hd_r1_k1_s1_c6']  # TODO (JZ)
         ],
     }
 

@@ -11,20 +11,21 @@ class BodyPart(IntEnum):
     right_elbow = 3
     right_wrist = 4
     left_shoulder = 5
-    left_elbow = 6
-    left_wrist = 7
-    right_hip = 8
-    right_knee = 9
-    right_ankle = 10
-    left_hip = 11
-    left_knee = 12
-    left_ankle = 13
-    right_eye = 14
-    left_eye = 15
-    right_ear = 16
-    left_ear = 17
-    background = 18
+    # left_elbow = 6
+    # left_wrist = 7
+    # right_hip = 8
+    # right_knee = 9
+    # right_ankle = 10
+    # left_hip = 11
+    # left_knee = 12
+    # left_ankle = 13
+    # right_eye = 14
+    # left_eye = 15
+    # right_ear = 16
+    # left_ear = 17
+    # background = 18
 
+    # TODO(JZ)18
 
 class ConnectionMeta:
     """
@@ -116,37 +117,37 @@ def get_default_configuration():
     config.register_body_part(body_part = BodyPart.right_elbow, heatmap_idx = 3, color = [255, 255, 0])
     config.register_body_part(body_part = BodyPart.right_wrist, heatmap_idx = 4, color = [170, 255, 0])
     config.register_body_part(body_part = BodyPart.left_shoulder, heatmap_idx = 5, color = [85, 255, 0])
-    config.register_body_part(body_part = BodyPart.left_elbow, heatmap_idx = 6, color = [0, 255, 0])
-    config.register_body_part(body_part = BodyPart.left_wrist, heatmap_idx = 7, color = [0, 255, 85])
-    config.register_body_part(body_part = BodyPart.right_hip, heatmap_idx = 8, color = [0, 255, 170])
-    config.register_body_part(body_part = BodyPart.right_knee, heatmap_idx = 9, color = [0, 255, 255])
-    config.register_body_part(body_part = BodyPart.right_ankle, heatmap_idx = 10, color = [0, 170, 255])
-    config.register_body_part(body_part = BodyPart.left_hip, heatmap_idx = 11, color = [0, 85, 255])
-    config.register_body_part(body_part = BodyPart.left_knee, heatmap_idx = 12, color = [0, 0, 255])
-    config.register_body_part(body_part = BodyPart.left_ankle, heatmap_idx = 13, color = [170, 0, 255])
-    config.register_body_part(body_part = BodyPart.right_eye, heatmap_idx = 14, color = [255, 0, 255])
-    config.register_body_part(body_part = BodyPart.left_eye, heatmap_idx = 15, color = [255, 0, 170])
-    config.register_body_part(body_part = BodyPart.right_ear, heatmap_idx = 16, color = [255, 0, 85])
-    config.register_body_part(body_part = BodyPart.left_ear, heatmap_idx = 17, color = [255, 0, 85])
-
-    config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.right_shoulder, paf_dx_idx = 12, paf_dy_idx = 13, color = [255, 0, 0])
-    config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.left_shoulder,  paf_dx_idx = 20, paf_dy_idx = 21, color = [255, 85, 0])
-    config.add_connection(from_body_part = BodyPart.right_shoulder, to_body_part = BodyPart.right_elbow,    paf_dx_idx = 14, paf_dy_idx = 15, color = [255, 170, 0])
-    config.add_connection(from_body_part = BodyPart.right_elbow,    to_body_part = BodyPart.right_wrist,    paf_dx_idx = 16, paf_dy_idx = 17, color = [255, 255, 0])
-    config.add_connection(from_body_part = BodyPart.left_shoulder,  to_body_part = BodyPart.left_elbow,     paf_dx_idx = 22, paf_dy_idx = 23, color = [170, 255, 0])
-    config.add_connection(from_body_part = BodyPart.left_elbow,     to_body_part = BodyPart.left_wrist,     paf_dx_idx = 24, paf_dy_idx = 25, color = [85, 255, 0])
-    config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.right_hip,      paf_dx_idx = 0,  paf_dy_idx = 1,  color = [0, 255, 0])
-    config.add_connection(from_body_part = BodyPart.right_hip,      to_body_part = BodyPart.right_knee,     paf_dx_idx = 2,  paf_dy_idx = 3,  color = [0, 255, 85])
-    config.add_connection(from_body_part = BodyPart.right_knee,     to_body_part = BodyPart.right_ankle,    paf_dx_idx = 4,  paf_dy_idx = 5,  color = [0, 255, 170])
-    config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.left_hip,       paf_dx_idx = 6,  paf_dy_idx = 7,  color = [0, 255, 255])
-    config.add_connection(from_body_part = BodyPart.left_hip,       to_body_part = BodyPart.left_knee,      paf_dx_idx = 8,  paf_dy_idx = 9,  color = [0, 170, 255])
-    config.add_connection(from_body_part = BodyPart.left_knee,      to_body_part = BodyPart.left_ankle,     paf_dx_idx = 10, paf_dy_idx = 11, color = [0, 85, 255])
-    config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.nose,           paf_dx_idx = 28, paf_dy_idx = 29, color = [0, 0, 255])
-    config.add_connection(from_body_part = BodyPart.nose,           to_body_part = BodyPart.right_eye,      paf_dx_idx = 30, paf_dy_idx = 31, color = [85, 0, 255])
-    config.add_connection(from_body_part = BodyPart.right_eye,      to_body_part = BodyPart.right_ear,      paf_dx_idx = 34, paf_dy_idx = 35, color = [170, 0, 255])
-    config.add_connection(from_body_part = BodyPart.nose,           to_body_part = BodyPart.left_eye,       paf_dx_idx = 32, paf_dy_idx = 33, color = [255, 0, 255])
-    config.add_connection(from_body_part = BodyPart.left_eye,       to_body_part = BodyPart.left_ear,       paf_dx_idx = 36, paf_dy_idx = 37, color = [255, 0, 170])
-    config.add_connection(from_body_part = BodyPart.right_shoulder, to_body_part = BodyPart.right_ear,      paf_dx_idx = 18, paf_dy_idx = 19, color = [255, 0, 85])
-    config.add_connection(from_body_part = BodyPart.left_shoulder,  to_body_part = BodyPart.left_ear,       paf_dx_idx = 26, paf_dy_idx = 27, color = [255, 0, 85])
+    # config.register_body_part(body_part = BodyPart.left_elbow, heatmap_idx = 6, color = [0, 255, 0])
+    # config.register_body_part(body_part = BodyPart.left_wrist, heatmap_idx = 7, color = [0, 255, 85])
+    # config.register_body_part(body_part = BodyPart.right_hip, heatmap_idx = 8, color = [0, 255, 170])
+    # config.register_body_part(body_part = BodyPart.right_knee, heatmap_idx = 9, color = [0, 255, 255])
+    # config.register_body_part(body_part = BodyPart.right_ankle, heatmap_idx = 10, color = [0, 170, 255])
+    # config.register_body_part(body_part = BodyPart.left_hip, heatmap_idx = 11, color = [0, 85, 255])
+    # config.register_body_part(body_part = BodyPart.left_knee, heatmap_idx = 12, color = [0, 0, 255])
+    # config.register_body_part(body_part = BodyPart.left_ankle, heatmap_idx = 13, color = [170, 0, 255])
+    # config.register_body_part(body_part = BodyPart.right_eye, heatmap_idx = 14, color = [255, 0, 255])
+    # config.register_body_part(body_part = BodyPart.left_eye, heatmap_idx = 15, color = [255, 0, 170])
+    # config.register_body_part(body_part = BodyPart.right_ear, heatmap_idx = 16, color = [255, 0, 85])
+    # config.register_body_part(body_part = BodyPart.left_ear, heatmap_idx = 17, color = [255, 0, 85])
+    # TODO (JZ)
+    # config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.right_shoulder, paf_dx_idx = 12, paf_dy_idx = 13, color = [255, 0, 0])
+    # config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.left_shoulder,  paf_dx_idx = 20, paf_dy_idx = 21, color = [255, 85, 0])
+    # config.add_connection(from_body_part = BodyPart.right_shoulder, to_body_part = BodyPart.right_elbow,    paf_dx_idx = 14, paf_dy_idx = 15, color = [255, 170, 0])
+    # config.add_connection(from_body_part = BodyPart.right_elbow,    to_body_part = BodyPart.right_wrist,    paf_dx_idx = 16, paf_dy_idx = 17, color = [255, 255, 0])
+    # config.add_connection(from_body_part = BodyPart.left_shoulder,  to_body_part = BodyPart.left_elbow,     paf_dx_idx = 22, paf_dy_idx = 23, color = [170, 255, 0])
+    # config.add_connection(from_body_part = BodyPart.left_elbow,     to_body_part = BodyPart.left_wrist,     paf_dx_idx = 24, paf_dy_idx = 25, color = [85, 255, 0])
+    # config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.right_hip,      paf_dx_idx = 0,  paf_dy_idx = 1,  color = [0, 255, 0])
+    # config.add_connection(from_body_part = BodyPart.right_hip,      to_body_part = BodyPart.right_knee,     paf_dx_idx = 2,  paf_dy_idx = 3,  color = [0, 255, 85])
+    # config.add_connection(from_body_part = BodyPart.right_knee,     to_body_part = BodyPart.right_ankle,    paf_dx_idx = 4,  paf_dy_idx = 5,  color = [0, 255, 170])
+    # config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.left_hip,       paf_dx_idx = 6,  paf_dy_idx = 7,  color = [0, 255, 255])
+    # config.add_connection(from_body_part = BodyPart.left_hip,       to_body_part = BodyPart.left_knee,      paf_dx_idx = 8,  paf_dy_idx = 9,  color = [0, 170, 255])
+    # config.add_connection(from_body_part = BodyPart.left_knee,      to_body_part = BodyPart.left_ankle,     paf_dx_idx = 10, paf_dy_idx = 11, color = [0, 85, 255])
+    # config.add_connection(from_body_part = BodyPart.neck,           to_body_part = BodyPart.nose,           paf_dx_idx = 28, paf_dy_idx = 29, color = [0, 0, 255])
+    # config.add_connection(from_body_part = BodyPart.nose,           to_body_part = BodyPart.right_eye,      paf_dx_idx = 30, paf_dy_idx = 31, color = [85, 0, 255])
+    # config.add_connection(from_body_part = BodyPart.right_eye,      to_body_part = BodyPart.right_ear,      paf_dx_idx = 34, paf_dy_idx = 35, color = [170, 0, 255])
+    # config.add_connection(from_body_part = BodyPart.nose,           to_body_part = BodyPart.left_eye,       paf_dx_idx = 32, paf_dy_idx = 33, color = [255, 0, 255])
+    # config.add_connection(from_body_part = BodyPart.left_eye,       to_body_part = BodyPart.left_ear,       paf_dx_idx = 36, paf_dy_idx = 37, color = [255, 0, 170])
+    # config.add_connection(from_body_part = BodyPart.right_shoulder, to_body_part = BodyPart.right_ear,      paf_dx_idx = 18, paf_dy_idx = 19, color = [255, 0, 85])
+    # config.add_connection(from_body_part = BodyPart.left_shoulder,  to_body_part = BodyPart.left_ear,       paf_dx_idx = 26, paf_dy_idx = 27, color = [255, 0, 85])
     
     return config

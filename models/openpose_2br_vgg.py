@@ -38,7 +38,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:backbone#'],
             ['cnreg_r3_k3_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c512_nre'],
-            ['cn3_r1_k1_s1_c38']
+            ['cn3_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_0_s_masked#': [
             ['select:stage_0_s#:mask_s#'],
@@ -51,7 +51,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:backbone#'],
             ['cnreg_r3_k3_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c512_nre'],
-            ['cn3_r1_k1_s1_c19']
+            ['cn3_r1_k1_s1_c6']# TODO (JZ)
         ],
         'stage_0_l_masked#': [
             ['select:stage_0_l#:mask_l#'],
@@ -68,7 +68,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_0_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c38']
+            ['cn3_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_1_s_masked#': [
             ['select:stage_1_s#:mask_s#'],
@@ -81,7 +81,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_0_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c19']
+            ['cn3_r1_k1_s1_c6']# TODO (JZ)
         ],
         'stage_1_l_masked#': [
             ['select:stage_1_l#:mask_l#'],
@@ -98,7 +98,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_1_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c38']
+            ['cn3_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_2_s_masked#': [
             ['select:stage_2_s#:mask_s#'],
@@ -111,7 +111,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_1_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c19']
+            ['cn3_r1_k1_s1_c6']# TODO (JZ)
         ],
         'stage_2_l_masked#': [
             ['select:stage_2_l#:mask_l#'],
@@ -128,7 +128,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_2_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c38']
+            ['cn3_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_3_s_masked#': [
             ['select:stage_3_s#:mask_s#'],
@@ -141,7 +141,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_2_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c19']
+            ['cn3_r1_k1_s1_c6']# TODO (JZ)
         ],
         'stage_3_l_masked#': [
             ['select:stage_3_l#:mask_l#'],
@@ -158,7 +158,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_3_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c38']
+            ['cn3_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_4_s_masked#': [
             ['select:stage_4_s#:mask_s#'],
@@ -171,7 +171,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_3_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c19']
+            ['cn3_r1_k1_s1_c6']# TODO (JZ)
         ],
         'stage_4_l_masked#': [
             ['select:stage_4_l#:mask_l#'],
@@ -188,7 +188,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_4_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c38']
+            ['cn3_r1_k1_s1_c12']# TODO (JZ)
         ],
         'stage_5_s_masked#': [
             ['select:stage_5_s#:mask_s#'],
@@ -201,7 +201,7 @@ class OpenPose2BranchesVGG(tf.keras.Model):
             ['select:stage_4_out#'],
             ['cnreg_r5_k7_s1_c128_nre'],
             ['cnreg_r1_k1_s1_c128_nre'],
-            ['cn3_r1_k1_s1_c19']
+            ['cn3_r1_k1_s1_c6']# TODO (JZ)
         ],
         'stage_5_l_masked#': [
             ['select:stage_5_l#:mask_l#'],
@@ -256,10 +256,10 @@ def create_openpose_2branches_vgg(pretrained=False, training=False):
     pretrained_url = "https://github.com/michalfaber/tensorflow_Realtime_Multi-Person_Pose_Estimation/releases/download/v1.0/openpose_2br_vgg.zip"
 
     if training:
-        model = OpenPose2BranchesVGG(in_chs=[3, 38, 19], training=training)
+        model = OpenPose2BranchesVGG(in_chs=[3, 12, 6], training=training)
         model.build([tf.TensorShape((None, None, None, 3)),
-                     tf.TensorShape((None, None, None, 38)),
-                     tf.TensorShape((None, None, None, 19))
+                     tf.TensorShape((None, None, None, 12)),
+                     tf.TensorShape((None, None, None, 6))#TODO
                      ])
     else:
         model = OpenPose2BranchesVGG(in_chs=[3], training=training)

@@ -26,6 +26,12 @@ def create_heatmap(num_maps, height, width, all_joints, sigma, stride):
     for joints in all_joints:
         for plane_idx, joint in enumerate(joints):
             if joint:
+                #TODO(JZ)
+
+                # print('heatmap  =  ',heatmap)
+                # print('plane_idx',plane_idx)
+                # print('joint  =  ',joint)
+                # print('sigma   =  ',sigma)#, height, width, stride)
                 _put_heatmap_on_plane(heatmap, plane_idx, joint, sigma, height, width, stride)
 
     # background
@@ -51,7 +57,8 @@ def create_paf(num_maps, height, width, all_joints, threshold, stride):
     """
     vectormap = np.zeros((height, width, num_maps*2), dtype=np.float32)
     countmap = np.zeros((height, width, num_maps), dtype=np.uint8)
-    for joints in all_joints:
+    # TODO(JZ)all_joints
+    for joints in all_joints[0:5]:
         for plane_idx, (j_idx1, j_idx2) in enumerate(JointsLoader.joint_pairs):
             center_from = joints[j_idx1]
             center_to = joints[j_idx2]
@@ -83,7 +90,8 @@ def _put_heatmap_on_plane(heatmap, plane_idx, joint, sigma, height, width, strid
             if exponent > 4.6052:
                 continue
 
-            heatmap[g_y, g_x, plane_idx] += math.exp(-exponent)
+            heatmap[g_y, g_x, plane_idx] += math.exp(-exponent)#TODO(JZ)
+            #TODO(JZ)hearmap
             if heatmap[g_y, g_x, plane_idx] > 1.0:
                 heatmap[g_y, g_x, plane_idx] = 1.0
 

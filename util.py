@@ -141,8 +141,8 @@ def probe_model_2br_vgg(model, test_img_path):
 
     output_blobs = model.predict([
         inputs,
-        tf.ones((1, 46, 46, 38), dtype=tf.dtypes.float32),
-        tf.ones((1, 46, 46, 19), dtype=tf.dtypes.float32)
+        tf.ones((1, 46, 46, 12), dtype=tf.dtypes.float32),#TODO
+        tf.ones((1, 46, 46, 6), dtype=tf.dtypes.float32) #TODO
     ])
 
     paf1 = output_blobs[10]

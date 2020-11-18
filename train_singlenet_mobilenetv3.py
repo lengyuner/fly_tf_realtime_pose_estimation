@@ -1,3 +1,5 @@
+
+
 import datetime
 from datetime import timedelta
 from timeit import default_timer as timer
@@ -19,7 +21,7 @@ annot_path_val = '../datasets/coco_2017_dataset/annotations/person_keypoints_val
 img_dir_val = '../datasets/coco_2017_dataset/val2017/'
 checkpoints_folder = './tf_ckpts_singlenet'
 output_weights = 'output_singlenet/openpose_singlenet'
-batch_size = 10
+batch_size = 8#10
 lr = 2.5e-5
 max_epochs = 300
 
@@ -185,12 +187,20 @@ def train(ds_train, ds_val, model, optimizer, ckpt, last_epoch, last_step, max_e
 if __name__ == '__main__':
 
     # registering custom blocks types
-
+    print('############## begin ###############\n'*10)
     register_tf_netbuilder_extensions()
 
     # loading datasets
+    print('############## begin loading datasets ###############\n' * 10)
 
     ds_train, ds_train_size = get_dataset(annot_path_train, img_dir_train, batch_size)
+    print(ds_train, ds_train_size)
+
+    print(ds_train, ds_train_size)
+
+    print('############## size ###############\n'*10)
+
+
     ds_val, ds_val_size = get_dataset(annot_path_val, img_dir_val, batch_size, strict=True)
 
     print(f"Training samples: {ds_train_size} , Validation samples: {ds_val_size}")

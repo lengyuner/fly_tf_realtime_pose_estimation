@@ -4,7 +4,7 @@ import click
 import tensorflow as tf
 
 from train_singlenet_mobilenetv3 import register_tf_netbuilder_extensions
-from util import probe_model
+from util import probe_model_singlenet
 
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
@@ -43,7 +43,7 @@ def main(weights, tflite_path, create_model_fn):
 
     # first pass
 
-    probe_model(model, test_img_path="resources/ski_224.jpg")
+    probe_model_singlenet(model, test_img_path="resources/ski_224.jpg")
 
     # export model to tflite
 

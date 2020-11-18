@@ -1,0 +1,16 @@
+
+https://github.com/michalfaber/tensorflow_Realtime_Multi-Person_Pose_Estimation
+
+
+https://github.com/michalfaber/tensorflow_Realtime_Multi-Person_Pose_Estimation
+
+
+├── datasets
+    │   └── coco_2017_dataset
+    │       ├── annotations
+    │       │   ├── person_keypoints_train2017.json
+    │       │   └── person_keypoints_val2017.json
+    │       ├── train2017/*
+    │       └── val2017/*
+    └── tensorflow_Realtime_Multi-Person_Pose_Estimation/*
+

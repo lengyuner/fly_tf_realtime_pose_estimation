@@ -4,6 +4,7 @@ import numpy as np
 import functools
 
 from tensorpack.dataflow import MultiProcessMapDataZMQ, TestDataSpeed
+from tensorpack.dataflow import MultiThreadMapData,MultiProcessMapData
 from tensorpack.dataflow.common import MapData
 
 from dataset.augmentors import CropAug, FlipAug, ScaleAug, RotateAug, ResizeAug
@@ -19,12 +20,17 @@ def build_sample(components, y_size):
     :param components: components
     :return: list of final components of a sample.
     """
+    # img = components[10]
+    # aug_joints = components[13]
     img = components[10]
     aug_joints = components[13]
-
+    # print(img.shape)
+    # print('aug_joints=',aug_joints)
+    # aug_joints[6:]=None
+    # print('aug_joints=',aug_joints)
     heatmap = create_heatmap(JointsLoader.num_joints_and_bkg, y_size, y_size,
                              aug_joints, 5.0, stride=8)
-
+    # create_heatmap(num_maps, height, width, all_joints, sigma, stride):
     pafmap = create_paf(JointsLoader.num_connections, y_size, y_size,
                         aug_joints, 0.8, stride=8)
 
@@ -45,11 +51,11 @@ def build_sample_with_masks(components, y_size):
     aug_joints = components[13]
 
     if mask is None:
-        mask_paf = np.repeat(np.ones((y_size, y_size, 1), dtype=np.uint8), 38, axis=2)
-        mask_heatmap = np.repeat(np.ones((y_size, y_size, 1), dtype=np.uint8), 19, axis=2)
+        mask_paf = np.repeat(np.ones((y_size, y_size, 1), dtype=np.uint8), 12, axis=2)
+        mask_heatmap = np.repeat(np.ones((y_size, y_size, 1), dtype=np.uint8), 6, axis=2)#TODO
     else:
-        mask_paf = create_all_mask(mask, 38, stride=8)
-        mask_heatmap = create_all_mask(mask, 19, stride=8)
+        mask_paf = create_all_mask(mask, 12, stride=8)
+        mask_heatmap = create_all_mask(mask, 6, stride=8)#TODO
 
     heatmap = create_heatmap(JointsLoader.num_joints_and_bkg, y_size, y_size,
                              aug_joints, 7.0, stride=8)
@@ -91,7 +97,9 @@ def get_dataflow_vgg(annot_path, img_dir, strict, x_size, y_size, include_output
         CropAug(coco_crop_size, coco_crop_size, center_perterb_max=40, border_value=128,
                 mask_border_val=1),
 
-        FlipAug(num_parts=18, prob=0.5)
+        # FlipAug(num_parts=18, prob=0.5)
+        FlipAug(num_parts=5, prob=0.5)
+        # TODO(JZ)18
     ]
 
     if x_size != coco_crop_size:
@@ -134,6 +142,7 @@ def get_dataflow(annot_path, img_dir, strict, x_size = 224, y_size = 28):
     :return: dataflow object
     """
     coco_crop_size = 368
+    coco_crop_size = 224 # TODO(JZ)crop_size
 
     # configure augmentors
 
@@ -150,8 +159,12 @@ def get_dataflow(annot_path, img_dir, strict, x_size = 224, y_size = 28):
 
         CropAug(coco_crop_size, coco_crop_size, center_perterb_max=40, border_value=128,
                 mask_border_val=1),
+        # CropAug(64, 48, center_perterb_max=40, border_value=128,
+        #         mask_border_val=1),
 
-        FlipAug(num_parts=18, prob=0.5),
+        # FlipAug(num_parts=18, prob=0.5),
+        FlipAug(num_parts=5, prob=0.5),
+        #TODO(JZ)FlipAug
 
         ResizeAug(x_size, x_size)
 
@@ -172,10 +185,25 @@ def get_dataflow(annot_path, img_dir, strict, x_size = 224, y_size = 28):
     df = CocoDataFlow((coco_crop_size, coco_crop_size), annot_path, img_dir)
     df.prepare()
     size = df.size()
-    df = MapData(df, read_img)
-    df = MapData(df, augment_func)
-    df = MultiProcessMapDataZMQ(df, num_proc=4, map_func=build_sample_func, buffer_size=200, strict=strict)
+    print(df.size())
 
+    df = MapData(df, read_img)
+    print(df.size())
+
+    df = MapData(df, augment_func)
+    print(df.size())
+    # df = MultiProcessMapDataZMQ(df, num_proc=4, map_func=build_sample_func,
+    #                             buffer_size=200, strict=strict)
+
+
+    df = MultiThreadMapData(df, 4, build_sample_func,
+                            buffer_size=200, strict=strict)
+
+    # TODO(JZ)ZMQ
+
+    # df = MultiThreadMapData(df, 4, build_sample_func,
+    #                         buffer_size=200, strict=strict)
+    print(df.size())
     return df, size
 
 
@@ -191,7 +219,7 @@ if __name__ == '__main__':
     img_dir = os.path.abspath(os.path.join(curr_dir, '../../datasets/coco_2017_dataset/val2017/'))
 
     df1, size1 = get_dataflow(annot_path, img_dir, False, x_size=224, y_size=28)
-    df2, size2 = get_dataflow_vgg(annot_path, img_dir, False, x_size=368, y_size=46, include_outputs_masks=True)
+    # df2, size2 = get_dataflow_vgg(annot_path, img_dir, False, x_size=368, y_size=46, include_outputs_masks=True)
 
     TestDataSpeed(df1, size=100).start()
-    TestDataSpeed(df2, size=100).start()
+    # TestDataSpeed(df2, size=100).start()

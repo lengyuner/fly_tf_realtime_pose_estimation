@@ -1,0 +1,2 @@
+model_checkpoint_path: "openpose_singlenet"
+all_model_checkpoint_paths: "openpose_singlenet"
